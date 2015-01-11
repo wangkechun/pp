@@ -141,7 +141,15 @@ func (p *printer) printSlice() {
 		p.printf("%s{}", p.typeString())
 		return
 	}
-
+	switch p.value.Index(0).Kind() {
+	case reflect.Uint8:
+		p.print(p.typeString() + "{\"")
+		for i := 0; i < p.value.Len(); i++ {
+			p.colorPrint(string(p.value.Index(i).Uint()), "red")
+		}
+		p.print("\"}")
+		return
+	}
 	p.println(p.typeString() + "{")
 	p.indented(func() {
 		for i := 0; i < p.value.Len(); i++ {
