@@ -147,16 +147,24 @@ func (p *printer) printSlice() {
 		for i := 0; i < p.value.Len(); i++ {
 			p.colorPrint(string(p.value.Index(i).Uint()), "red")
 		}
-		p.print("\"}")
+		p.print("\"")
+		if p.value.Len() <= 100 {
+			p.printf(",[%d]{", p.value.Len())
+			for i := 0; i < p.value.Len(); i++ {
+				p.printf("%d ", p.value.Index(i).Uint())
+			}
+			p.print("}")
+		}
+		p.print("}")
 		return
 	}
-	p.println(p.typeString() + "{")
-	p.indented(func() {
-		for i := 0; i < p.value.Len(); i++ {
-			p.indentPrintf("%s,\n", p.format(p.value.Index(i)))
-		}
-	})
-	p.indentPrint("}")
+	// p.println(p.typeString() + "{")
+	// p.indented(func() {
+	// 	for i := 0; i < p.value.Len(); i++ {
+	// 		p.indentPrintf("%s,\n", p.format(p.value.Index(i)))
+	// 	}
+	// })
+	// p.indentPrint("}")
 }
 
 func (p *printer) printInterface() {
