@@ -1,3 +1,5 @@
+[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/k0kubun/pp)
+
 # pp [![wercker status](https://app.wercker.com/status/6934c847631da2cf672e559f927a90b2/s "wercker status")](https://app.wercker.com/project/bykey/6934c847631da2cf672e559f927a90b2)
 
 Colored pretty printer for Go language
